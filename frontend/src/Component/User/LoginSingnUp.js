@@ -8,7 +8,7 @@ import FaceIcon from "@material-ui/icons/Face";
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, login, register } from "../../action/userAction.js";
 import { useAlert } from "react-alert";
-import {history} from "../../History";
+import { history } from "../../History";
 
 const LoginSignUp = () => {
 
@@ -51,7 +51,7 @@ const LoginSignUp = () => {
     myForm.set("email", email);
     myForm.set("password", password);
     myForm.set("avatar", avatar);
-    console.log(myForm.get("name"+name));
+    console.log(myForm.get("name" + name));
     dispatch(register(myForm));
 
   };
@@ -73,6 +73,7 @@ const LoginSignUp = () => {
     }
   };
 
+  // for redirect to shipping
   const redirect = window.location.search ? window.location.search.split("=")[1] : "/account";
 
   useEffect(() => {
@@ -83,7 +84,8 @@ const LoginSignUp = () => {
 
     if (isAuthenticated) {
       history.push(redirect);
-      // window.location("reload");
+      // refresh the page
+      window.location.reload();
     }
   }, [dispatch, error, alert, isAuthenticated, redirect]);
 
@@ -107,7 +109,7 @@ const LoginSignUp = () => {
 
   return (
     <Fragment>
-      {loading? (
+      {loading ? (
         <Loader />
       ) : (
         <Fragment>

@@ -27,7 +27,7 @@ exports.createProduct = catchAsyncError(async (req, res, next) => {
 exports.getAllProducts = catchAsyncError(async (req, res, next) => {
     // return next(new ErrorHandler("Temp error by me",500));
     // per page products
-    const resultPerPage = 3;
+    const resultPerPage = 4;
     const productCount = await Product.countDocuments();
     // for get only the filtered products
     const apiFeature =await  new ApiFeature(Product.find(), req.query).search().filter();
