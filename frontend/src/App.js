@@ -29,6 +29,7 @@ import UpdatePassword from "./Component/User/UpdatePassword.js"
 import ForgotPassword from "./Component/User/ForgotPassword.js"
 import Cart from "./Component/Cart/Cart.js";
 import Shipping from "./Component/Cart/Shipping.js";
+import ConfirmOrder from "./Component/Cart/ConfirmOrder.js";
 function App() {
   // for google fonts
 
@@ -75,6 +76,8 @@ function App() {
 
         {/* shipping */}
         <Route exact path="/shipping" element={isAuthenticated ? <Shipping /> : <LoginSignUp /> }></Route>
+
+        <Route exact path="/order/confirm" element={isAuthenticated ? <ConfirmOrder /> : <LoginSignUp /> }></Route>
 
         {/* <Route exact path="/load" element={<Loader />}></Route> */}
         
