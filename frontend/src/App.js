@@ -30,6 +30,8 @@ import ForgotPassword from "./Component/User/ForgotPassword.js"
 import Cart from "./Component/Cart/Cart.js";
 import Shipping from "./Component/Cart/Shipping.js";
 import ConfirmOrder from "./Component/Cart/ConfirmOrder.js";
+import Payment from "./Component/Cart/Payment";
+import { Elements } from "@stripe/react-stripe-js";
 function App() {
   // for google fonts
 
@@ -78,6 +80,9 @@ function App() {
         <Route exact path="/shipping" element={isAuthenticated ? <Shipping /> : <LoginSignUp /> }></Route>
 
         <Route exact path="/order/confirm" element={isAuthenticated ? <ConfirmOrder /> : <LoginSignUp /> }></Route>
+        
+        <Route exact path="/process/payment" element={isAuthenticated ? <Payment /> : <LoginSignUp /> }></Route>
+        
 
         {/* <Route exact path="/load" element={<Loader />}></Route> */}
         
