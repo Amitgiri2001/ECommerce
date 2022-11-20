@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import MetaData from "../../Component/layout/MetaData"
 import Loader from "../../Component/layout/Loader/Loader"
 // for stars
-import  Rating  from 'react-rating-stars-component';
+// import  Rating  from 'react-rating-stars-component';
 import { Fragment,useEffect } from 'react'
 import Carousel from "react-material-ui-carousel";
 import "./ProductDetails.css";
@@ -12,49 +12,51 @@ import "./ProductDetails.css";
 // for get the products from the store
 import {useDispatch,useSelector} from "react-redux";
 
-import {getProductDetails} from "../../action/productAction";
+import {clearErrors, getProductDetails, newReview} from "../../action/productAction";
 
 // ReviewCard
 import ReviewCard from "./ReviewCard.js"
 
 // for handling error
 import {useAlert} from "react-alert"
-import { CLEAR_ERRORS } from '../../constants/productConstants';
+import { CLEAR_ERRORS, NEW_REVIEW_RESET } from '../../constants/productConstants';
 import { addItemsToCart } from '../../action/cartAction';
 import { history } from '../../History';
+
+
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Button,
+} from "@material-ui/core";
+import { Rating } from "@material-ui/lab";
 
 
 
 const ProductDetails = () => {
 
   
-  const alert=useAlert();
-    const dispatch=useDispatch();
-    const {product,loading,error} =useSelector(state=>state.productDetails);
+  // const alert=useAlert();
+    // const dispatch=useDispatch();
+    // const {product,loading,error} =useSelector(state=>state.productDetails);
     
-    const [quantity,setQuantity]=useState(1)
+    
 
-    function increaseQuantity(params) {
-      // quantity must be lesser than stock
-      if(product.stock<=quantity)return;
-      setQuantity(quantity+1);
-    }
-    function decreaseQuantity(params) {
-      if(quantity<=1)return;
-      setQuantity(quantity-1);
-    }
+    
 
 
     const params = useParams();
     console.log("id: "+params.id);
     
-    useEffect(() => {
-      if(error){
-        alert.error(error);
-        dispatch(CLEAR_ERRORS);
-      }
-      dispatch(getProductDetails(params.id))
-    }, [dispatch,params.id])
+    // useEffect(() => {
+    //   if(error){
+    //     alert.error(error);
+    //     dispatch(CLEAR_ERRORS);
+    //   }
+    //   dispatch(getProductDetails(params.id))
+    // }, [dispatch,params.id])
     
 
     const addToCartHandler = () => {
@@ -64,16 +66,82 @@ const ProductDetails = () => {
       window.location.reload();
     };
 
-    // options for stars
-    const options = {
-      edit: false,
-      color: "rgba(20,20,20,0.1)",
-      activeColor:"tomato",
-      size:window.innerWidth>600 ? 25:20,
-      value:product.ratings,
-      isHalf:true,
-    };
+    
 
+
+
+    const dispatch = useDispatch();
+  const alert = useAlert();
+
+  const { product, loading, error } = useSelector(
+    (state) => state.productDetails
+  );
+
+  const { success, error: reviewError } = useSelector(
+    (state) => state.newReview
+  );
+
+  const options = {
+    size: "large",
+    value: product.ratings,
+    readOnly: true,
+    precision: 0.5,
+  };
+
+  const [quantity, setQuantity] = useState(1);
+  const [open, setOpen] = useState(false);
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState("");
+
+  const increaseQuantity = () => {
+    if (product.Stock <= quantity) return;
+
+    const qty = quantity + 1;
+    setQuantity(qty);
+  };
+
+  const decreaseQuantity = () => {
+    if (1 >= quantity) return;
+
+    const qty = quantity - 1;
+    setQuantity(qty);
+  };
+
+  
+
+  const submitReviewToggle = () => {
+    open ? setOpen(false) : setOpen(true);
+  };
+
+  const reviewSubmitHandler = () => {
+    const myForm = new FormData();
+
+    myForm.set("rating", rating);
+    myForm.set("comment", comment);
+    myForm.set("productId", params.id);
+
+    dispatch(newReview(myForm));
+
+    setOpen(false);
+  };
+
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
+
+    if (reviewError) {
+      alert.error(reviewError);
+      dispatch(clearErrors());
+    }
+
+    if (success) {
+      alert.success("Review Submitted Successfully");
+      dispatch({ type: NEW_REVIEW_RESET });
+    }
+    dispatch(getProductDetails(params.id));
+  }, [dispatch, params.id, error, alert, reviewError, success]);
     
 
 
@@ -139,7 +207,7 @@ const ProductDetails = () => {
                 Description : <p>{product.description}</p>
               </div>
 
-              <button className="submitReview">
+              <button className="submitReview" onClick={submitReviewToggle}>
                 Submit Review
               </button>
             </div>
@@ -147,7 +215,7 @@ const ProductDetails = () => {
 
           <h3 className="reviewsHeading">REVIEWS</h3>
 
-          {/* <Dialog
+          <Dialog
             aria-labelledby="simple-dialog-title"
             open={open}
             onClose={submitReviewToggle}
@@ -176,7 +244,7 @@ const ProductDetails = () => {
                 Submit
               </Button>
             </DialogActions>
-          </Dialog> */}
+          </Dialog>
 
           {product.reviews && product.reviews[0] ? (
             <div className="reviews">
