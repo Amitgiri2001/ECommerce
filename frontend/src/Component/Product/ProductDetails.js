@@ -25,7 +25,7 @@ import { history } from '../../History';
 
 
 
-const ProductDetails = ({match}) => {
+const ProductDetails = () => {
 
   
   const alert=useAlert();
