@@ -44,19 +44,11 @@ const ProductDetails = () => {
     
     
 
-    
-
+  
 
     const params = useParams();
     console.log("id: "+params.id);
-    
-    // useEffect(() => {
-    //   if(error){
-    //     alert.error(error);
-    //     dispatch(CLEAR_ERRORS);
-    //   }
-    //   dispatch(getProductDetails(params.id))
-    // }, [dispatch,params.id])
+  
     
 
     const addToCartHandler = () => {
@@ -153,7 +145,7 @@ const ProductDetails = () => {
         <Fragment>
           <MetaData title={`${product.name} -- ECOMMERCE`} />
           <div className="ProductDetails">
-            <div className='custom-sty'>
+            
               <Carousel>
                 {product.images &&
                   product.images.map((item, i) => (
@@ -165,7 +157,7 @@ const ProductDetails = () => {
                     />
                   ))}
               </Carousel>
-            </div>
+            
 
             <div>
               <div className="detailsBlock-1">

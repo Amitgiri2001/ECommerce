@@ -14,6 +14,8 @@ import Product from "./ProductCard";
 import { useAlert } from "react-alert"
 import { CLEAR_ERRORS } from "../../constants/productConstants";
 
+// for slider
+import Carousel from "react-material-ui-carousel";
 
 
 const Home = () => {
@@ -35,7 +37,7 @@ const Home = () => {
             dispatch(CLEAR_ERRORS);
         }
         dispatch(getProduct())
-    }, [dispatch, error,alert]);
+    }, [dispatch, error, alert]);
 
 
     return (
@@ -44,6 +46,10 @@ const Home = () => {
                 <Fragment>
                     {/* set the title */}
                     <MetaData title="ECommerce" />
+                    
+
+                    {/* slider */}
+                    <Carousel className="slider" animation="slide" interval={2000} cycleNavigation={true} stopAutoPlayOnHover={false}>
                     <div className="banner">
                         <p>Welcome to ECommerce</p>
                         <h1>FIND AMAZING PRODUCTS BELOW</h1>
@@ -54,6 +60,22 @@ const Home = () => {
                             </button>
                         </a>
                     </div>
+                        <img
+                            className="bg"
+
+                            src="https://images.pexels.com/photos/3769747/pexels-photo-3769747.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                            alt="slide"
+                        />
+                        <img
+                            className="bg"
+
+                            src="https://images.pexels.com/photos/4050345/pexels-photo-4050345.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                            alt="slide"
+                        />
+
+                        {/* <div class="bg"></div> */}
+
+                    </Carousel>
 
                     <h2 className="homeHeading">Featured Products</h2>
 

@@ -1,3 +1,4 @@
+//in app we find the express package
 const app = require("./app");
 const dotenv = require("dotenv");//this is a file where we can store the protected things
 const cloudinary = require("cloudinary");
