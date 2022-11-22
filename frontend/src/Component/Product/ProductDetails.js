@@ -1,24 +1,24 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 // for get the id of the element
 import { useParams } from "react-router-dom";
 import MetaData from "../../Component/layout/MetaData"
 import Loader from "../../Component/layout/Loader/Loader"
 // for stars
 // import  Rating  from 'react-rating-stars-component';
-import { Fragment,useEffect } from 'react'
+import { Fragment, useEffect } from 'react'
 import Carousel from "react-material-ui-carousel";
 import "./ProductDetails.css";
 
 // for get the products from the store
-import {useDispatch,useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import {clearErrors, getProductDetails, newReview} from "../../action/productAction";
+import { clearErrors, getProductDetails, newReview } from "../../action/productAction";
 
 // ReviewCard
 import ReviewCard from "./ReviewCard.js"
 
 // for handling error
-import {useAlert} from "react-alert"
+import { useAlert } from "react-alert"
 import { CLEAR_ERRORS, NEW_REVIEW_RESET } from '../../constants/productConstants';
 import { addItemsToCart } from '../../action/cartAction';
 import { history } from '../../History';
@@ -37,32 +37,20 @@ import { Rating } from "@material-ui/lab";
 
 const ProductDetails = () => {
 
-  
-  // const alert=useAlert();
-    // const dispatch=useDispatch();
-    // const {product,loading,error} =useSelector(state=>state.productDetails);
-    
-    
-
-  
-
-    const params = useParams();
-    console.log("id: "+params.id);
-  
-    
-
-    const addToCartHandler = () => {
-      dispatch(addItemsToCart(params.id, quantity));
-      alert.success("Item Added To Cart");
-      history.push("/cart");
-      window.location.reload();
-    };
-
-    
+  const params = useParams();
+  console.log("id: " + params.id);
+  const addToCartHandler = () => {
+    dispatch(addItemsToCart(params.id, quantity));
+    alert.success("Item Added To Cart");
+    history.push("/cart");
+    window.location.reload();
+  };
 
 
 
-    const dispatch = useDispatch();
+
+
+  const dispatch = useDispatch();
   const alert = useAlert();
 
   const { product, loading, error } = useSelector(
@@ -99,7 +87,7 @@ const ProductDetails = () => {
     setQuantity(qty);
   };
 
-  
+
 
   const submitReviewToggle = () => {
     open ? setOpen(false) : setOpen(true);
@@ -134,7 +122,7 @@ const ProductDetails = () => {
     }
     dispatch(getProductDetails(params.id));
   }, [dispatch, params.id, error, alert, reviewError, success]);
-    
+
 
 
   return (
@@ -145,12 +133,13 @@ const ProductDetails = () => {
         <Fragment>
           <MetaData title={`${product.name} -- ECOMMERCE`} />
           <div className="ProductDetails">
+
             
               <Carousel>
                 {product.images &&
                   product.images.map((item, i) => (
                     <img
-                      className="CarouselImage"
+                      className="center"
                       key={i}
                       src={item.url}
                       alt={`${i} Slide`}
@@ -158,6 +147,7 @@ const ProductDetails = () => {
                   ))}
               </Carousel>
             
+
 
             <div>
               <div className="detailsBlock-1">
