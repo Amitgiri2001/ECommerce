@@ -1,4 +1,22 @@
 /* image */
+.redColor{
+  color: red;
+}
+.greenColor{
+  color: green;
+}
+
+ a {
+  font: 300 0.8vmax cursive;
+  color: #0060B6;
+  text-decoration: none !important;
+}
+
+a:hover {
+  color:#00A0C6; 
+  text-decoration:none; 
+  cursor:pointer;  
+}
 .center {
   display: block;
   margin-left: auto;
@@ -87,7 +105,7 @@
 .detailsBlock-3-1-1 > input {
   border: none;
   padding: 0.5vmax;
-  width: 1vmax;
+  width: 2.5vmax;
   text-align: center;
   outline: none;
   font: 400 0.8vmax "Roboto";

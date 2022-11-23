@@ -5,8 +5,9 @@ import MetaData from "../layout/MetaData";
 import "./ConfirmOrder.css";
 import { Link } from "react-router-dom";
 import { Typography } from "@material-ui/core";
+import { history } from "../../History";
 
-const ConfirmOrder = ({ history }) => {
+const ConfirmOrder = () => {
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.user);
 
@@ -34,6 +35,7 @@ const ConfirmOrder = ({ history }) => {
     sessionStorage.setItem("orderInfo", JSON.stringify(data));
 
     history.push("/process/payment");
+    window.location.reload();
   };
 
   return (

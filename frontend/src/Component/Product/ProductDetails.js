@@ -19,10 +19,13 @@ import ReviewCard from "./ReviewCard.js"
 
 // for handling error
 import { useAlert } from "react-alert"
-import { CLEAR_ERRORS, NEW_REVIEW_RESET } from '../../constants/productConstants';
+import { NEW_REVIEW_RESET } from '../../constants/productConstants';
 import { addItemsToCart } from '../../action/cartAction';
 import { history } from '../../History';
 
+// for customize carousel
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 import {
   Dialog,
@@ -134,19 +137,30 @@ const ProductDetails = () => {
           <MetaData title={`${product.name} -- ECOMMERCE`} />
           <div className="ProductDetails">
 
-            
-              <Carousel>
-                {product.images &&
-                  product.images.map((item, i) => (
-                    <img
-                      className="center"
-                      key={i}
-                      src={item.url}
-                      alt={`${i} Slide`}
-                    />
-                  ))}
-              </Carousel>
-            
+
+            <Carousel
+            navButtonsAlwaysVisible={true}
+              navButtonsProps={{          // Change the colors and radius of the actual buttons. THIS STYLES BOTH BUTTONS
+                style: {
+                  backgroundColor: 'grey',
+                  // borderRadius: 0,
+                  fontSize:"large"
+                }
+              }}
+              NextIcon={<ArrowForwardIosIcon />}
+              PrevIcon={<ArrowBackIosIcon />}
+            >
+              {product.images &&
+                product.images.map((item, i) => (
+                  <img
+                    className="center"
+                    key={i}
+                    src={item.url}
+                    alt={`${i} Slide`}
+                  />
+                ))}
+            </Carousel>
+
 
 
             <div>
@@ -156,10 +170,12 @@ const ProductDetails = () => {
               </div>
               <div className="detailsBlock-2">
                 <Rating {...options} />
-                <span className="detailsBlock-2-span">
+                
+                <span className="detailsBlock-2-span" >
                   {" "}
-                  ({product.numOfReviews} Reviews)
+                  ({product.noOfReviews} <a href='#Reviews'>Reviews</a>)
                 </span>
+                
               </div>
               <div className="detailsBlock-3">
                 <h1>{`₹${product.price}`}</h1>
@@ -195,7 +211,7 @@ const ProductDetails = () => {
             </div>
           </div>
 
-          <h3 className="reviewsHeading">REVIEWS</h3>
+          <h3 className="reviewsHeading" id='Reviews'>REVIEWS</h3>
 
           <Dialog
             aria-labelledby="simple-dialog-title"
