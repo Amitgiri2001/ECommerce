@@ -32,6 +32,7 @@ import Shipping from "./Component/Cart/Shipping.js";
 import ConfirmOrder from "./Component/Cart/ConfirmOrder.js";
 import Payment from "./Component/Cart/Payment";
 import { Elements } from "@stripe/react-stripe-js";
+import NewProduct from "./Component/Admin/NewProduct";
 function App() {
   // for google fonts
 
@@ -83,7 +84,7 @@ function App() {
         
         <Route exact path="/process/payment" element={isAuthenticated ? <Payment /> : <LoginSignUp /> }></Route>
         
-
+        <Route exact path="/admin/dashboard" element={isAuthenticated ? <NewProduct /> : <LoginSignUp /> }></Route>
         {/* <Route exact path="/load" element={<Loader />}></Route> */}
         
       </Routes>

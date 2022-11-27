@@ -13,13 +13,20 @@ import Product from "./ProductCard";
 // for alert
 import { useAlert } from "react-alert"
 import { CLEAR_ERRORS } from "../../constants/productConstants";
+import {history} from "../../History"
 
 // for slider
 import Carousel from "react-material-ui-carousel";
 
 
+function allProduct(params) {
+    history.push("/products");
+    window.location.reload()
+}
+
 const Home = () => {
 
+    
     const alert = useAlert();
 
     const dispatch = useDispatch();
@@ -88,6 +95,9 @@ const Home = () => {
                         }
 
                         {console.log(products)}
+                    </div>
+                    <div className="allProduct-btn-class">
+                    <button className="allProduct-btn" onClick={allProduct}>All Products</button>
                     </div>
                 </Fragment>
             )};

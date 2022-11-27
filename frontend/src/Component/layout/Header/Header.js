@@ -1,8 +1,12 @@
 import React from 'react'
 import {ReactNavbar} from "overlay-navbar";
 import logo from "../../../images/logo.png";
+import SearchIconElement from '@mui/icons-material/SearchOutlined';
+import cartIconElement from "../../../images/search.png"
 
 const options = {
+ 
+  
   burgerColorHover: "#eb4034",
   logo,
   logoWidth: "20vmax",
@@ -11,12 +15,12 @@ const options = {
   logoHoverColor: "#eb4034",
   link1Text: "Home",
   link2Text: "Products",
-  link3Text: "Contact",
-  link4Text: "About",
+  link3Text: <SearchIconElement />,
+  link4Text: "Login/SignUp",
   link1Url: "/",
   link2Url: "/products",
-  link3Url: "/contact",
-  link4Url: "/about",
+  link3Url: "/search",
+  link4Url: "/login",
   link1Size: "1.3vmax",
   link1Color: "rgba(35, 35, 35,0.8)",
   nav1justifyContent: "flex-end",
@@ -25,18 +29,11 @@ const options = {
   nav4justifyContent: "flex-start",
   link1ColorHover: "#eb4034",
   link1Margin: "1vmax",
-  profileIconUrl: "/login",
-  profileIconColor: "rgba(35, 35, 35,0.8)",
-  searchIconColor: "rgba(35, 35, 35,0.8)",
-  cartIconColor: "rgba(35, 35, 35,0.8)",
-  profileIconColorHover: "#eb4034",
-  searchIconColorHover: "#eb4034",
-  cartIconColorHover: "#eb4034",
-  cartIconMargin: "1vmax",
+  
 };
 
 const Header = () => {
-  return <ReactNavbar {...options} />;
+  return <ReactNavbar  cartIconElement={<SearchIconElement />} {...options} />;
 };
 
 export default Header
