@@ -70,13 +70,13 @@ const Home = () => {
                         <img
                             className="bg"
 
-                            src="https://images.pexels.com/photos/3769747/pexels-photo-3769747.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                            src="https://img.freepik.com/free-vector/online-shopping-concept-web-landing-page-digital-marketing-website-mobile-application_25819-695.jpg?size=626&ext=jpg&ga=GA1.2.1816845162.1654705009"
                             alt="slide"
                         />
                         <img
                             className="bg"
 
-                            src="https://images.pexels.com/photos/4050345/pexels-photo-4050345.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                            src="https://img.freepik.com/free-vector/online-shopping-isometric-concept-illustration_88138-435.jpg?size=626&ext=jpg&ga=GA1.2.1816845162.1654705009"
                             alt="slide"
                         />
 
