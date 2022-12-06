@@ -20,7 +20,7 @@ import VpnKeyIcon from "@material-ui/icons/VpnKey";
 import { history } from "../../History";
 
 function success() {
-  history.push("/order/success");
+  history.push("/process/payment/success");
   window.location.reload();
 }
 // import { createOrder, clearErrors } from "../../action/orderAction";

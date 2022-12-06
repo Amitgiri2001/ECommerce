@@ -33,6 +33,7 @@ import ConfirmOrder from "./Component/Cart/ConfirmOrder.js";
 import Payment from "./Component/Cart/Payment";
 
 import NewProduct from "./Component/Admin/NewProduct";
+import Success from "./Component/Cart/Success";
 function App() {
   // for google fonts
 
@@ -83,6 +84,8 @@ function App() {
         <Route exact path="/order/confirm" element={isAuthenticated ? <ConfirmOrder /> : <LoginSignUp /> }></Route>
         
         <Route exact path="/process/payment" element={isAuthenticated ? <Payment /> : <LoginSignUp /> }></Route>
+        {/* success page */}
+        <Route exact path="/process/payment/success" element={isAuthenticated ? <Success /> : <LoginSignUp /> }></Route>
         
         <Route exact path="/admin/dashboard" element={isAuthenticated ? <NewProduct /> : <LoginSignUp /> }></Route>
         {/* <Route exact path="/load" element={<Loader />}></Route> */}
